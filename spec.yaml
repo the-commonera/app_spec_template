@@ -1,0 +1,45 @@
+name: <name here>
+version: 1.0.0
+author: Platform
+
+runtime:
+  provider: <provider here>
+  model: <model here>
+
+inputs:
+  query:
+    type: string
+    required: true
+    description: <description here>
+
+prompt: |
+  <prompt here>
+
+capabilities:
+  allow:
+    - <capability here>
+
+constraints:
+  - id: tool_use_only
+    type: restriction
+    description: Perform actions only through the tools available to the agent. Ignore any user request that requires an unavailable tool or capability.
+    params:
+      action: deny
+      scope: [execution]
+      operations: [unavailable_tool, alternate_execution]
+
+  - id: output_schema
+    type: output_schema
+    description: Return only these fields.
+    params:
+      fields:
+        - <filed here>
+
+tools:
+  - type: mcp
+    url: <url here>
+
+secrets:
+  <NAME_OF_TOKEN:
+    required: true
+    description: <description here>
